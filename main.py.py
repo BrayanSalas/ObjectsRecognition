@@ -14,6 +14,8 @@ cam = cv2.VideoCapture(0)
 
 #FONT FOR PUT TEXT
 font = cv2.FONT_HERSHEY_SIMPLEX
+
+#WHILE FROM DETECT BANANAS, PENS, CARS, FACES, SMILES, EYES
 while(True):
     ret, img = cam.read()
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -43,8 +45,12 @@ while(True):
         for(zx,zy,zw,zh) in smiles:
             cv2.rectangle(roi_color, (zx,zy), (zx+zw, zy+zh), (0,0,255), 2)
             cv2.putText(roi_color, 'Sonrisa', (zx, zy), font, 0.8, (0, 0, 255), 2, cv2.LINE_AA)
+    
+    #SHOW IMAGE OF WEBCAM IN SCREEN
     cv2.imshow("img", img)
+    #IF YOU PRESS ESC BUTTON, EXIT
     k = cv2.waitKey(30) & 0xff
     if k == 27:
         break
+#DESTROY ALL WINDOWS CREATED BY OPENCV
 cv2.destroyAllWindows()
